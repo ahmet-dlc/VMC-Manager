@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom"; // To redirect after successful login
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // Handle form submission
     const handleSubmit = async (e) => {
@@ -25,7 +26,7 @@ const Login = () => {
             localStorage.setItem("token", response.data.token);
 
             // Redirect user to dashboard or home page after successful login
-            history.push("/dashboard");
+            navigate("/dashboard");
         } catch (err) {
             setLoading(false);
             setError(err.response ? err.response.data.error : "An error occurred");
