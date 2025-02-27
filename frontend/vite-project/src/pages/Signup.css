@@ -1,0 +1,18 @@
+/* Add this to Signup.css */
+.signup-page {
+    background-image: url('../assets/music-vinyl-simple-background-minimalism-wallpaper-preview.jpg'); /* Relative path to the assets folder */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the signup container */
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Optional overlay */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}

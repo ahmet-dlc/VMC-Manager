@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom"; // To redirect after successful login
-import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import './Login.css'; 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Handle form submission
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setError(""); // Clear any previous errors
+        setError(""); // Clear previous errors
 
         try {
             const response = await axios.post("http://localhost:3030/api/auth/login", {
@@ -22,50 +19,47 @@ const Login = () => {
                 password,
             });
 
-            // On success, store token in localStorage (or use context/state management)
+            // Save token to localStorage
             localStorage.setItem("token", response.data.token);
 
-            // Redirect user to dashboard or home page after successful login
-            navigate("/dashboard");
+            console.log("Login Success:", response.data);
+            alert("Login successful!"); 
+            navigate("/dashboard"); // Redirect to dashboard after login (you can change this)
         } catch (err) {
-            setLoading(false);
-            setError(err.response ? err.response.data.error : "An error occurred");
+            setError(err.response?.data?.error || "Login failed");
         }
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-
-            {error && <div className="error">{error}</div>}
-
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                        required
-                    />
-                </div>
-
-                <button type="submit" disabled={loading}>
-                    {loading ? "Logging in..." : "Login"}
-                </button>
-            </form>
+        <div className="login-page">
+            <div className="container mt-5">
+                <h2>Login</h2>
+                <form onSubmit={handleLogin}>
+                    <div className="mb-3">
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className="text-danger">{error}</p>}
+                    <button type="submit" className="btn btn-primary">Login</button>
+                </form>
+                <p className="mt-3">Don't have an account? <a href="/signup">Sign up here</a></p>
+            </div>
         </div>
     );
 };
