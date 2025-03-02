@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './Login.css'; 
+import './Login.css';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -32,8 +32,8 @@ const Login = () => {
 
     return (
         <div className="login-page">
-            <div className="container mt-5">
-                <h2>Login</h2>
+            <div className="login-container">
+                <h2>VMC Manager</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
                         <label>Email:</label>

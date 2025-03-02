@@ -16,8 +16,13 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: "user"  // e.g., 'admin' or 'user'
-    }
+        default: "user",
+        enum: ["user", "admin"]  // e.g., 'admin' or 'user'
+    },
+    attendingEvents: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event"  // Reference to the Event model
+    }]
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

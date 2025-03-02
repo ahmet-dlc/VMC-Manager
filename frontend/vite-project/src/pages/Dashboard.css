@@ -1,0 +1,58 @@
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #424242;
+}
+
+.main-content {
+    margin-left: 200px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    overflow-y: auto;
+}
+.event-cards {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-top: 20px;
+}
+.event-card {
+    width: 356px;
+    height: 700px;    
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+}
+.event-card img {
+    width: 350px;
+    height: 450px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+.event-card h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    padding-top: 10px;
+}
+.event-card p {
+    margin: 5px 0;
+    color: #555;
+}
+.discover-button {
+    background-color: #646cff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+.discover-button:hover {
+    background-color: #535bf2;
+}
