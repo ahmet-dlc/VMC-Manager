@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Dashboard.css";
 import Navbar from "../components/Navbar";
+import BASE_URL from "../utils/api";
 
 const Dashboard = () => {
     const [events, setEvents] = useState([]);
@@ -10,7 +11,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get("http://localhost:3030/api/events");
+                const response = await axios.get(`${BASE_URL}/events`);
                 setEvents(response.data);
             } catch (err) {
                 console.error("Error fetching events:", err);

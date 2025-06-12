@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import './EditEvents.css'; // Ensure this file exists
 import Navbar from "../components/Navbar";
+import BASE_URL from "../utils/api";
 
 const EditEvents = () => {
     const { eventId } = useParams(); // Get eventId from URL (for editing)
@@ -20,7 +21,7 @@ const EditEvents = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get("http://localhost:3030/api/events");
+                const response = await axios.get(`${BASE_URL}/events`);
                 setEvents(response.data);
             } catch (err) {
                 console.error("Error fetching events:", err);

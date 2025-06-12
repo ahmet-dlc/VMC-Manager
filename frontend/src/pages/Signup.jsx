@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './Signup.css'; 
+import BASE_URL from "../utils/api";
 
 const Signup = () => {
     const [name, setName] = useState("");
@@ -16,7 +17,7 @@ const Signup = () => {
         setError(""); // Clear previous errors
 
         try {
-            const res = await axios.post("http://localhost:3030/api/auth/signup", { name, email, password });
+            const res = await axios.post(`${BASE_URL}/auth/signup`, { name, email, password });
             setMessage(res.data.message);
             alert("Signup successful! Redirecting to login...");
             navigate("/login"); // Redirect to login after successful signup

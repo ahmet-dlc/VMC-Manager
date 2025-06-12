@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './Profile.css';
 import Navbar from "../components/Navbar";
+import BASE_URL from "../utils/api";
 
 const Profile = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -9,7 +10,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await axios.get("http://localhost:3030/api/users/me", {
+                const response = await axios.get(`${BASE_URL}/users/me`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
