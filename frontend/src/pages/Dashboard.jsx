@@ -25,7 +25,7 @@ const Dashboard = () => {
         try {
             const token = localStorage.getItem("token");
             await axios.post(
-                `http://localhost:3030/api/events/${eventId}/attend`,
+                `${BASE_URL}/events/${eventId}/attend`,
                 {eventId},
                 {
                     headers: {

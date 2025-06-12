@@ -36,7 +36,7 @@ const EditEvents = () => {
         if (eventId) {
             const fetchEvent = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3030/api/events/${eventId}`);
+                    const response = await axios.get(`${BASE_URL}/events/${eventId}`);
                     const event = response.data;
                     setTitle(event.title);
                     setDate(event.date);
@@ -62,7 +62,7 @@ const EditEvents = () => {
             if (eventId) {
                 // Update existing event
                 await axios.put(
-                    `http://localhost:3030/api/events/${eventId}`,
+                    `${BASE_URL}/events/${eventId}`,
                     { title, date, location, description, image },
                     {
                         headers: {
@@ -74,7 +74,7 @@ const EditEvents = () => {
             } else {
                 // Create new event
                 await axios.post(
-                    "http://localhost:3030/api/events/create",
+                    `${BASE_URL}/events/create`,
                     { title, date, location, description, image },
                     {
                         headers: {
@@ -96,7 +96,7 @@ const EditEvents = () => {
         if (window.confirm("Are you sure you want to delete this event?")) {
             try {
                 const token = localStorage.getItem("token");
-                await axios.delete(`http://localhost:3030/api/events/${eventId}`, {
+                await axios.delete(`${BASE_URL}/events/${eventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

@@ -1,5 +1,5 @@
 .login-page {
-    background-image: url('src/assets/background.jpg'); /* Add background image */
+    background-image: url('/background.jpg'); /* Add background image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
